@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CustomerDetailsActivity extends AppCompatActivity {
 
     private TextView tvCustomerId, tvCustomerName, tvCustomerYYYYMM, tvCustomerAddress, tvCustomerUsedNumGas, tvCustomerGasLevelTypeID;
-    private Button btnFirst, btnPrevious, btnNext, btnLast;
+    private Button btnFirst, btnPrevious, btnNext, btnLast, btnBack;
     private Cursor cursor;
     private DatabaseHelper dbHelper;
     private int currentPosition = 0;
@@ -52,6 +52,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         btnPrevious = findViewById(R.id.btn_previous);
         btnNext = findViewById(R.id.btn_next);
         btnLast = findViewById(R.id.btn_last);
+        btnBack = findViewById(R.id.btn_back); // Khởi tạo nút Back
     }
 
     private void setButtonListeners() {
@@ -86,6 +87,9 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 displayCustomerDetails();
             }
         });
+
+        // Thêm sự kiện cho nút Back
+        btnBack.setOnClickListener(v -> finish());
     }
 
     private void setCardViewClickListener() {
@@ -136,8 +140,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         cursor.moveToPosition(currentPosition); // Đặt cursor về vị trí hiện tại
         displayCustomerDetails();
     }
-
-
 
     private void displayCustomerDetails() {
         if (cursor != null) {
