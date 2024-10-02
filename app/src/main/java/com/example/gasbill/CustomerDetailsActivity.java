@@ -1,29 +1,78 @@
 package com.example.gasbill;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class CustomerDetailsActivity extends AppCompatActivity {
 
     private TextView tvCustomerId, tvCustomerName, tvCustomerYYYYMM, tvCustomerAddress, tvCustomerUsedNumGas, tvCustomerGasLevelTypeID;
-    private Button btnFirst, btnPrevious, btnNext, btnLast, btnBack;
+    private Button btnFirst, btnPrevious, btnNext, btnLast;
     private Cursor cursor;
     private DatabaseHelper dbHelper;
     private int currentPosition = 0;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_details);
+
+        // Khởi tạo Toolbar và thiết lập như ActionBar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Khởi tạo DrawerLayout và ActionBarDrawerToggle
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Xử lý các sự kiện khi chọn item trong NavigationView
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_home) {
+                    // Xử lý khi chọn "Home"
+                    Intent intent = new Intent(CustomerDetailsActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_bill) {
+                    // Xử lý khi chọn "Bill" và chuyển đến CustomerDetailsActivity
+                    Intent intent = new Intent(CustomerDetailsActivity.this, CustomerDetailsActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_settings) {
+                    // Xử lý khi chọn "Settings"
+                    Toast.makeText(CustomerDetailsActivity.this, "Settings selected", Toast.LENGTH_SHORT).show();
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
 
         dbHelper = new DatabaseHelper(this);
         initializeViews();
@@ -52,7 +101,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
         btnPrevious = findViewById(R.id.btn_previous);
         btnNext = findViewById(R.id.btn_next);
         btnLast = findViewById(R.id.btn_last);
-        btnBack = findViewById(R.id.btn_back); // Khởi tạo nút Back
     }
 
     private void setButtonListeners() {
@@ -88,8 +136,6 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             }
         });
 
-        // Thêm sự kiện cho nút Back
-        btnBack.setOnClickListener(v -> finish());
     }
 
     private void setCardViewClickListener() {
@@ -160,7 +206,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             }
 
             if (yyyymmIndex != -1) {
-                tvCustomerYYYYMM.setText("YYYYMM: " + cursor.getString(yyyymmIndex));
+                tvCustomerYYYYMM.setText("Date: " + cursor.getString(yyyymmIndex));
             }
 
             if (addressIndex != -1) {

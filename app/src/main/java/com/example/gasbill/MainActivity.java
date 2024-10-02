@@ -3,6 +3,7 @@ package com.example.gasbill;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,7 +11,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,21 +28,61 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
     EditText etName, etYYYYMM, etAddress, etUsedNumGas;
-    Spinner spinnerGasLevelTypeID; // Thay đổi thành Spinner
+    Spinner spinnerGasLevelTypeID;
     Button btnSave, btnViewCustomer;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Khởi tạo Toolbar và thiết lập như ActionBar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Khởi tạo DrawerLayout và ActionBarDrawerToggle
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Xử lý các sự kiện khi chọn item trong NavigationView
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_home) {
+                    // Xử lý khi chọn "Home"
+                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_bill) {
+                    // Xử lý khi chọn "Bill" và chuyển đến CustomerDetailsActivity
+                    Intent intent = new Intent(MainActivity.this, CustomerDetailsActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_settings) {
+                    // Xử lý khi chọn "Settings"
+                    Toast.makeText(MainActivity.this, "Settings selected", Toast.LENGTH_SHORT).show();
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
         dbHelper = new DatabaseHelper(this);
 
+        // Các phần còn lại của code như thiết lập EditText, Spinner và các sự kiện khác
         etName = findViewById(R.id.et_name);
         etYYYYMM = findViewById(R.id.et_yyyymm);
         etAddress = findViewById(R.id.et_address);
         etUsedNumGas = findViewById(R.id.et_used_num_gas);
-        spinnerGasLevelTypeID = findViewById(R.id.spinner_gas_level_type_id); // Liên kết với Spinner
+        spinnerGasLevelTypeID = findViewById(R.id.spinner_gas_level_type_id);
         btnSave = findViewById(R.id.btn_save);
         btnViewCustomer = findViewById(R.id.btn_view_customer);
 
@@ -75,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 String yyyymm = etYYYYMM.getText().toString();
                 String address = etAddress.getText().toString();
                 String usedNumGasStr = etUsedNumGas.getText().toString();
-                String gasLevelTypeIDStr = spinnerGasLevelTypeID.getSelectedItem().toString(); // Lấy giá trị từ Spinner
+                String gasLevelTypeIDStr = spinnerGasLevelTypeID.getSelectedItem().toString();
 
                 if (name.isEmpty() || yyyymm.isEmpty() || address.isEmpty() || usedNumGasStr.isEmpty() || gasLevelTypeIDStr.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -103,4 +151,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
