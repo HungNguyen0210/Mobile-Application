@@ -3,8 +3,11 @@ package com.example.gasbill;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.widget.SearchView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,6 +36,7 @@ public class CustomerDetailsActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,57 @@ public class CustomerDetailsActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // Tắt tiêu đề mặc định
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        // Tìm kiếm SearchView
+        SearchView searchView = findViewById(R.id.search_view);
+
+        // Lắng nghe sự kiện mở SearchView
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Khi nhấn vào, mở rộng SearchView thành match_parent
+                searchView.setLayoutParams(new Toolbar.LayoutParams(
+                        Toolbar.LayoutParams.MATCH_PARENT, // set width to match_parent
+                        Toolbar.LayoutParams.WRAP_CONTENT
+                ));
+                searchView.setQueryHint("Search by name or address");
+            }
+        });
+
+        // Khi SearchView bị đóng, trở về kích thước ban đầu và đúng vị trí
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                // Thiết lập lại vị trí layout_gravity về phía bên phải
+                Toolbar.LayoutParams layoutParams = new Toolbar.LayoutParams(
+                        Toolbar.LayoutParams.WRAP_CONTENT,
+                        Toolbar.LayoutParams.WRAP_CONTENT
+                );
+                layoutParams.gravity = Gravity.END; // Đặt gravity cho nút ở bên phải
+                searchView.setLayoutParams(layoutParams);
+                return false;
+            }
+        });
+        // Đặt màu chữ cho SearchView
+        int searchTextColor = Color.WHITE; // Màu trắng
+        int hintColor = Color.WHITE; // Màu trắng cho gợi ý văn bản
+        int cursorColor = Color.WHITE; // Màu trắng cho con trỏ
+
+        // Áp dụng màu chữ cho SearchView
+        searchView.setQueryHint("Search by name or address");
+        searchView.setIconifiedByDefault(true);
+
+        // Lấy TextView bên trong SearchView
+        EditText searchEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(searchTextColor); // Đặt màu chữ
+        searchEditText.setHintTextColor(hintColor); // Đặt màu cho gợi ý văn bản
+
+        searchEditText.setTextCursorDrawable(new ColorDrawable(cursorColor));
 
         dbHelper = new DatabaseHelper(this);
         initializeViews();
@@ -133,6 +189,21 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             if (cursor.moveToLast()) {
                 currentPosition = cursor.getCount() - 1;
                 displayCustomerDetails();
+            }
+        });
+
+        searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchCustomer(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchCustomer(newText);
+                return false;
             }
         });
 
@@ -222,6 +293,18 @@ public class CustomerDetailsActivity extends AppCompatActivity {
             }
         } else {
             Log.e("TAG", "No data found");
+        }
+    }
+
+
+    private void searchCustomer(String query) {
+        cursor = dbHelper.searchCustomerByNameOrAddress(query);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            displayCustomerDetails();
+        } else {
+            Toast.makeText(this, "No customer found", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -84,4 +84,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM customer", null);
     }
+
+    public Cursor searchCustomerByNameOrAddress(String query) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM customer WHERE NAME LIKE ? OR ADDRESS LIKE ?";
+        String[] selectionArgs = new String[]{"%" + query + "%", "%" + query + "%"};
+        return db.rawQuery(sql, selectionArgs);
+    }
+
 }
