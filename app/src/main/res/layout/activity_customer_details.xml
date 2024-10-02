@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerDetailsActivity"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp">
+    tools:context=".CustomerDetailsActivity">
 
     <!-- CardView to display Customer Information -->
     <androidx.cardview.widget.CardView
@@ -14,20 +12,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.3"> <!-- Adjust this value to control the position -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/tv_customer_id"
@@ -35,54 +32,42 @@
                 android:layout_height="wrap_content"
                 android:text="ID: "
                 android:textSize="18sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="32dp" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_customer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name: "
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="56dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_customer_yyyymm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date: "
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="80dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_customer_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address: "
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="104dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_customer_used_num_gas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Used Num Gas: "
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="128dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_customer_gas_level_type_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Gas Level Type ID: "
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="152dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -94,7 +79,6 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_view">
 
@@ -103,36 +87,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="First"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:text="First" />
 
         <Button
             android:id="@+id/btn_previous"
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Previous"
-            tools:layout_editor_absoluteX="103dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:text="Previous" />
 
         <Button
             android:id="@+id/btn_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Next"
-            tools:layout_editor_absoluteX="218dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:text="Next" />
 
         <Button
             android:id="@+id/btn_last"
             android:layout_width="9dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Last"
-            tools:layout_editor_absoluteX="321dp"
-            tools:layout_editor_absoluteY="208dp" />
+            android:text="Last" />
     </LinearLayout>
 
     <!-- Nút Back nằm ở hàng thứ hai -->
