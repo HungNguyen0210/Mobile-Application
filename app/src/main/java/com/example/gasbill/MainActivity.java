@@ -68,12 +68,17 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_settings) {
                     // Xử lý khi chọn "Settings"
                     Toast.makeText(MainActivity.this, "Settings selected", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.nav_change_unit) {
+                    // Xử lý khi chọn "Change unit"
+                    Intent intent = new Intent(MainActivity.this, ChangeUnitActivity.class);  // Tạo Activity ChangeUnitActivity
+                    startActivity(intent);
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
+
 
         dbHelper = new DatabaseHelper(this);
 

@@ -92,4 +92,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(sql, selectionArgs);
     }
 
+    public Cursor getGasLevelTypes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT ID, GAS_LEVEL_TYPE_NAME, UNIT_PRICE FROM gas_level_type", null);
+    }
+    public void updateGasLevelPrice(int gasLevelId, double newPrice) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("UNIT_PRICE", newPrice);
+
+        db.update("gas_level_type", contentValues, "ID = ?", new String[]{String.valueOf(gasLevelId)});
+        db.close();
+    }
+
 }
