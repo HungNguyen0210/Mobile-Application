@@ -1,0 +1,118 @@
+[
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-anydpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_activity_main.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_settings.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_settings.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_home.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_activity_customer_details.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/activity_customer_details.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_activity_change_unit.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/activity_change_unit.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_change.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_change.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/color_color_switch.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/color/color_switch.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_activity_settings.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/xml_backup_rules.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_cardview_gas_level.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/cardview_gas_level.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/menu_drawer_menu.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/menu/drawer_menu.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.gasbill.app-main-40:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/raw_sample_music.mp3.flat",
+        "source": "com.example.gasbill.app-main-40:/raw/sample_music.mp3"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/drawable_ic_bill.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/drawable/ic_bill.xml"
+    },
+    {
+        "merged": "com.example.gasbill.app-debug-38:/layout_dialog_update_customer.xml.flat",
+        "source": "com.example.gasbill.app-main-40:/layout/dialog_update_customer.xml"
+    }
+]
