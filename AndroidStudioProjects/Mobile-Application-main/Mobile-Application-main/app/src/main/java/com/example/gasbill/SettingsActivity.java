@@ -84,8 +84,12 @@ public class SettingsActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_home) {
+                if (id == R.id.nav_main) {
                     // Handle "Home" selection
+                    Intent intent = new Intent(SettingsActivity.this, MainActivityView.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_home) {
+                    // Handle "Bill" selection
                     Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_bill) {

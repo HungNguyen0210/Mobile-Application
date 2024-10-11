@@ -60,7 +60,10 @@ public class ChangeUnitActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (id == R.id.nav_home) {
+                if (id == R.id.nav_main) {
+                    Intent intent = new Intent(ChangeUnitActivity.this, MainActivityView.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_home) {
                     Intent intent = new Intent(ChangeUnitActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_bill) {

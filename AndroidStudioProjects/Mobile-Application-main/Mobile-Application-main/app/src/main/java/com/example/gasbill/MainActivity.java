@@ -57,9 +57,13 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_bill) {
+                if (id == R.id.nav_main) {
                     // Xử lý khi chọn "Bill" và chuyển đến CustomerDetailsActivity
-                    Intent intent = new Intent(MainActivity.this, CustomerDetailsActivity.class);
+                    Intent intent = new Intent(MainActivity.this, MainActivityView.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_bill) {
+                    // Xử lý khi chọn "Settings"
+                    Intent intent = new Intent(MainActivity.this, CustomerDetailsActivity.class);  // Tạo Activity ChangeUnitActivity
                     startActivity(intent);
                 } else if (id == R.id.nav_settings) {
                     // Xử lý khi chọn "Settings"
@@ -162,8 +166,17 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
+        btnViewCustomer = findViewById(R.id.btn_viewcustomer);
+        btnViewCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an intent to start CheckDetailCustomerActivity
+                Intent intent = new Intent(MainActivity.this, CustomerDetailsActivity.class);
+                // Start the new activity
+                startActivity(intent);
+            }
+        });
+
     }
-
-
-
 }

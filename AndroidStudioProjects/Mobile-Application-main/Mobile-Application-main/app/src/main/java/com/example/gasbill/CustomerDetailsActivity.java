@@ -92,9 +92,13 @@ public class CustomerDetailsActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
-                if (id == R.id.nav_home) {
+                if (id == R.id.nav_main) {
                     // Xử lý khi chọn "Home"
-                    Intent intent = new Intent(CustomerDetailsActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CustomerDetailsActivity.this, MainActivityView.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_home) {
+                    // Xử lý khi chọn "Settings"
+                    Intent intent = new Intent(CustomerDetailsActivity.this, MainActivity.class);  // Tạo Activity ChangeUnitActivity
                     startActivity(intent);
                 } else if (id == R.id.nav_settings) {
                     // Xử lý khi chọn "Settings"
